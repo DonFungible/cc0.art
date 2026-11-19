@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cc0-art",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/art/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB_CLEVELAND",
+      "database_name": "cc0-cleveland",
+      // Replace with the id printed by `npx wrangler d1 create cc0-cleveland` before deploying.
+      // Local dev (npm run dev / --local) ignores it and uses .wrangler/state.
+      "database_id": "00000000-0000-0000-0000-000000000000"
+    }
+  ],
+  "observability": { "enabled": true }
+}

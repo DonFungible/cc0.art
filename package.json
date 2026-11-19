@@ -1,0 +1,37 @@
+{
+  "name": "cc0-art",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc -b",
+    "deploy": "npm run build && wrangler deploy",
+    "ingest": "tsx ingest/cleveland.ts",
+    "db:schema:local": "wrangler d1 execute DB_CLEVELAND --local --file db/schema.sql",
+    "db:seed:local": "wrangler d1 execute DB_CLEVELAND --local --file db/seed/cleveland.sql",
+    "db:load:local": "npm run db:schema:local && npm run db:seed:local",
+    "db:schema:remote": "wrangler d1 execute DB_CLEVELAND --remote --file db/schema.sql",
+    "db:seed:remote": "wrangler d1 execute DB_CLEVELAND --remote --file db/seed/cleveland.sql",
+    "db:load:remote": "npm run db:schema:remote && npm run db:seed:remote"
+  },
+  "dependencies": {
+    "@vueuse/core": "^15.0.0",
+    "vue": "^3.5.45",
+    "vue-router": "^5.5.1"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.70.1",
+    "@cloudflare/workers-types": "^5.20261119.1",
+    "@types/node": "^26.6.6",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vue/tsconfig": "^0.9.1",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9",
+    "vite": "^8.3.8",
+    "vue-tsc": "^3.3.14",
+    "wrangler": "^4.165.0"
+  }
+}
